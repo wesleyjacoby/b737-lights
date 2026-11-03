@@ -20,7 +20,7 @@ const DISPATCH = {
 	go: "May be inop",
 	conditional: "Conditional",
 	nogo: "No-go",
-	none: "No item",
+	none: "No MEL item: no-go",
 };
 
 let DATA = null;
@@ -177,7 +177,9 @@ function tileFor(sysId, lightId, chip) {
 		{
 			class:
 				"tile" +
-				(l.colour === "blue" || l.colour === "green" ? " " + l.colour : ""),
+				(["blue", "green", "red", "white"].includes(l.colour)
+					? " " + l.colour
+					: ""),
 			type: "button",
 			"aria-pressed": String(route.light === lightId),
 			"aria-label": l.name + ", " + chip.sub,
@@ -345,7 +347,7 @@ function renderDetail() {
 			el("div", { class: "entry" }, [
 				el("div", { class: "row" }, [
 					el("span", {
-						class: "pill " + e.dispatch,
+						class: "pill " + (e.dispatch === "none" ? "nogo" : e.dispatch),
 						text: DISPATCH[e.dispatch],
 					}),
 					el("b", { text: e.exact ? e.item : "Nearest section: " + e.item }),
@@ -365,6 +367,19 @@ function renderDetail() {
 			]),
 		);
 	});
+	if (!l.mel.length)
+		m.appendChild(
+			el("div", { class: "entry" }, [
+				el("div", { class: "row" }, [
+					el("span", { class: "pill nogo", text: DISPATCH.none }),
+					el("b", { text: "No MEL item found" }),
+				]),
+				el("p", {
+					class: "gist",
+					text: "No MEL item names this light or its function. With no MEL item, the airplane is a no-go.",
+				}),
+			]),
+		);
 	d.appendChild(m);
 
 	const f = el("div", { class: "sec" }, [el("h3", { text: "FCOM" })]);

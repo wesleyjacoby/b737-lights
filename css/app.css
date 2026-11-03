@@ -74,6 +74,12 @@
 	--green: #4fd183;
 	--green-ink: #03150a;
 	--green-glow: rgba(79, 209, 131, 0.5);
+	--white: #eef2f5;
+	--white-ink: #12171b;
+	--white-glow: rgba(238, 242, 245, 0.5);
+	--red: #ff5a4d;
+	--red-ink: #1f0402;
+	--red-glow: rgba(255, 90, 77, 0.55);
 	--ok-bg: #dcefe2;
 	--ok-ink: #14532d;
 	--warn-bg: #fbe9c3;
@@ -445,6 +451,22 @@ button {
 	background: var(--green);
 	color: var(--green-ink);
 	box-shadow: 0 0 14px 1px var(--green-glow);
+}
+.tile.red:not([aria-pressed="true"]):hover {
+	color: var(--red);
+}
+.tile.red[aria-pressed="true"] {
+	background: var(--red);
+	color: var(--red-ink);
+	box-shadow: 0 0 14px 1px var(--red-glow);
+}
+.tile.white:not([aria-pressed="true"]):hover {
+	color: var(--white);
+}
+.tile.white[aria-pressed="true"] {
+	background: var(--white);
+	color: var(--white-ink);
+	box-shadow: 0 0 14px 1px var(--white-glow);
 }
 .empty {
 	padding: 20px;
