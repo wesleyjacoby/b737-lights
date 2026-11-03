@@ -175,7 +175,9 @@ function tileFor(sysId, lightId, chip) {
 	return el(
 		"button",
 		{
-			class: "tile",
+			class:
+				"tile" +
+				(l.colour === "blue" || l.colour === "green" ? " " + l.colour : ""),
 			type: "button",
 			"aria-pressed": String(route.light === lightId),
 			"aria-label": l.name + ", " + chip.sub,
@@ -328,6 +330,13 @@ function renderDetail() {
 			]),
 		);
 	});
+	if (!l.qrh.length)
+		q.appendChild(
+			el("p", {
+				class: "gist",
+				text: "The QRH has no checklist for this light.",
+			}),
+		);
 	d.appendChild(q);
 
 	const m = el("div", { class: "sec" }, [el("h3", { text: "MEL" })]);

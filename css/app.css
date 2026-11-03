@@ -68,6 +68,12 @@
 	--amber: #f3a817;
 	--amber-ink: #1b1303;
 	--amber-glow: rgba(243, 168, 23, 0.55);
+	--blue: #3d9bff;
+	--blue-ink: #04121f;
+	--blue-glow: rgba(61, 155, 255, 0.55);
+	--green: #4fd183;
+	--green-ink: #03150a;
+	--green-glow: rgba(79, 209, 131, 0.5);
 	--ok-bg: #dcefe2;
 	--ok-ink: #14532d;
 	--warn-bg: #fbe9c3;
@@ -422,6 +428,23 @@ button {
 	background: var(--amber);
 	color: var(--amber-ink);
 	box-shadow: 0 0 14px 1px var(--amber-glow);
+}
+/* blue lights (valve positions) and green lights */
+.tile.blue:not([aria-pressed="true"]):hover {
+	color: var(--blue);
+}
+.tile.blue[aria-pressed="true"] {
+	background: var(--blue);
+	color: var(--blue-ink);
+	box-shadow: 0 0 14px 1px var(--blue-glow);
+}
+.tile.green:not([aria-pressed="true"]):hover {
+	color: var(--green);
+}
+.tile.green[aria-pressed="true"] {
+	background: var(--green);
+	color: var(--green-ink);
+	box-shadow: 0 0 14px 1px var(--green-glow);
 }
 .empty {
 	padding: 20px;
