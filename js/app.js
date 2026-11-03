@@ -50,6 +50,7 @@ function el(tag, attrs, kids) {
 	return n;
 }
 
+$("#ver").textContent = "Version " + (window.APP_VERSION || "unknown");
 function mode() {
 	return query.trim() ? "search" : route.sys ? "system" : "home";
 }
@@ -110,6 +111,7 @@ function lightCount(sys) {
 
 let firstHome = true;
 function renderHome() {
+	$("#ver").hidden = false;
 	const grid = $("#sysGrid");
 	grid.replaceChildren();
 	DATA.systems.forEach(function (s, i) {
@@ -419,6 +421,7 @@ function renderDetail() {
 
 // Fills the panel for the current system or the search results.
 function renderWork() {
+	$("#ver").hidden = true;
 	const title = $("#stageTitle");
 	const sys = route.sys ? systemById(route.sys) : null;
 	if (mode() === "search") {

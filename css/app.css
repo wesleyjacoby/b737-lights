@@ -967,27 +967,30 @@ button {
 	}
 }
 
-/* Solid bands behind the iOS status bar so it has nothing to blur. */
+/* Solid band over the iPad status bar area (time, date, app name) so nothing shows through to blur.
+   Sits above everything, including the viewer, and follows the viewer's toolbar colour when it is open. */
 body::before {
 	content: "";
 	position: fixed;
-	inset: 0 0 auto 0;
+	top: 0;
+	left: 0;
+	right: 0;
 	height: env(safe-area-inset-top, 0px);
 	background: var(--bg);
-	z-index: 39;
+	z-index: 100;
 	pointer-events: none;
 }
-.viewer::before {
-	content: "";
-	position: absolute;
-	inset: 0 0 auto 0;
-	height: env(safe-area-inset-top, 0px);
+body:has(#viewer:not([hidden]))::before {
 	background: var(--card);
-	z-index: 2;
-	pointer-events: none;
 }
 .badge.mem {
 	background: var(--stop-bg);
 	color: var(--stop-ink);
 	font-weight: 700;
+}
+.ver {
+	margin: 4px 0 0;
+	text-align: left;
+	font: 400 12px/1.4 var(--f-mono);
+	color: var(--muted);
 }

@@ -18,7 +18,10 @@
 <body>
   <div class="wrap">
     <header class="top">
-      <h1 class="brand" id="brand">737 Light Reference</h1>
+      <div class="brandwrap">
+        <h1 class="brand" id="brand">737 Light Reference</h1>
+        <p class="ver" id="ver"></p>
+      </div>
       <div class="tools">
         <label class="sr" for="q">Search lights</label>
         <input class="search" id="q" type="search" placeholder="Search lights" autocomplete="off">
@@ -71,6 +74,7 @@
   <input type="file" id="picker" accept="application/pdf,.pdf" hidden>
 
   <script src="vendor/pdfjs/pdf.min.js"></script>
+  <script src="js/version.js"></script>
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

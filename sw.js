@@ -1,14 +1,16 @@
 // Offline support. The app shell is cached on first visit. Pages, scripts and data try the network first
 // (so a new deploy shows up as soon as you are online) and fall back to the cache when offline or slow.
 // Fonts, icons and pdf.js never change, so they come straight from the cache.
-// Bump VERSION when files are added or renamed, so the new list is cached.
-const VERSION = "v11";
+// The version comes from js/version.js. Bump it there when files change, so the new list is cached.
+importScripts("js/version.js");
+const VERSION = self.APP_VERSION;
 const CACHE = "lights-" + VERSION;
 const SHELL = [
 	"./",
 	"index.html",
 	"manifest.webmanifest",
 	"css/app.css",
+	"js/version.js",
 	"js/app.js",
 	"js/store.js",
 	"js/pdfdocs.js",
