@@ -2,7 +2,7 @@
 // (so a new deploy shows up as soon as you are online) and fall back to the cache when offline or slow.
 // Fonts, icons and pdf.js never change, so they come straight from the cache.
 // Bump VERSION when files are added or renamed, so the new list is cached.
-const VERSION = "v4";
+const VERSION = "v6";
 const CACHE = "lights-" + VERSION;
 const SHELL = [
 	"./",
