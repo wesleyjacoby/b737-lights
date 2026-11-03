@@ -966,3 +966,23 @@ button {
 		animation: none;
 	}
 }
+
+/* Solid bands behind the iOS status bar so it has nothing to blur. */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0 0 auto 0;
+	height: env(safe-area-inset-top, 0px);
+	background: var(--bg);
+	z-index: 39;
+	pointer-events: none;
+}
+.viewer::before {
+	content: "";
+	position: absolute;
+	inset: 0 0 auto 0;
+	height: env(safe-area-inset-top, 0px);
+	background: var(--card);
+	z-index: 2;
+	pointer-events: none;
+}
