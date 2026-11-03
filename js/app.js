@@ -303,7 +303,7 @@ function renderDetail() {
 		el("div", { class: "d-head" }, [
 			el("h2", { text: l.name }),
 			el("span", {
-				class: "badge",
+				class: "badge" + (l.memory ? " mem" : ""),
 				text: l.memory ? "Memory items" : "No memory items",
 			}),
 		]),
@@ -321,6 +321,7 @@ function renderDetail() {
 			el("div", { class: "entry" }, [
 				e.when ? el("p", { class: "when", text: e.when }) : null,
 				el("p", { class: "ttl", text: e.title }),
+				e.memory ? el("p", { class: "when", text: "Has memory items" }) : null,
 				el("p", { class: "gist", text: e.gist }),
 				el("div", { class: "row" }, [
 					refButton("QRH", e, "Open checklist " + e.printed, e.title),

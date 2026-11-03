@@ -986,3 +986,8 @@ body::before {
 	z-index: 2;
 	pointer-events: none;
 }
+.badge.mem {
+	background: var(--stop-bg);
+	color: var(--stop-ink);
+	font-weight: 700;
+}
