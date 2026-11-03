@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>737 Light Reference</title>
+  <meta name="theme-color" content="#e6eaed" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0d1115" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="737 Lights">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <h1 class="brand" id="brand">737 Light Reference</h1>
+      <div class="tools">
+        <label class="sr" for="q">Search lights</label>
+        <input class="search" id="q" type="search" placeholder="Search lights" autocomplete="off">
+        <button class="btn" id="docsBtn" aria-expanded="false" aria-controls="docs">Manuals</button>
+      </div>
+    </header>
+
+    <section class="docs" id="docs" hidden aria-label="Your manuals"></section>
+
+    <main>
+      <div class="stagewrap" id="stagewrap">
+        <section id="home" aria-label="Systems">
+          <p class="crumbs" id="homeCrumb">Systems</p>
+          <div class="sysgrid" id="sysGrid"></div>
+        </section>
+
+        <section class="stage" id="work" hidden>
+          <div id="stageInner">
+            <div class="workbar">
+              <button class="btn" id="backSys" type="button">&lsaquo; Systems</button>
+              <h2 class="stage-title" id="stageTitle" tabindex="-1"><b></b><span></span></h2>
+              <nav class="chips" id="chips" aria-label="Systems"></nav>
+            </div>
+            <div class="layout">
+              <div id="list"></div>
+              <aside class="detail" id="detail" aria-live="polite"></aside>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="viewer" id="viewer" hidden role="dialog" aria-label="Manual page">
+    <div class="v-bar">
+      <button class="btn" id="vClose" type="button">Close</button>
+      <div class="v-title"><b id="vDoc"></b><span id="vNote"></span></div>
+      <button class="btn" id="vPrev" type="button" aria-label="Previous page">&lsaquo;</button>
+      <label class="sr" for="vPage">Page</label>
+      <input class="v-page" id="vPage" inputmode="numeric" value="1">
+      <span class="rev" id="vOf"></span>
+      <button class="btn" id="vNext" type="button" aria-label="Next page">&rsaquo;</button>
+      <button class="btn" id="vOut" type="button" aria-label="Zoom out">&minus;</button>
+      <button class="btn" id="vIn" type="button" aria-label="Zoom in">+</button>
+    </div>
+    <div class="v-plain" id="vPlain" hidden></div>
+    <div class="v-body" id="vBody"></div>
+  </div>
+
+  <input type="file" id="picker" accept="application/pdf,.pdf" hidden>
+
+  <script src="vendor/pdfjs/pdf.min.js"></script>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

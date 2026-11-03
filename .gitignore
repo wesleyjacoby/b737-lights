@@ -1,0 +1,8 @@
+# The manuals are never part of the project
+*.pdf
+.DS_Store
+node_modules/
+__pycache__/
+
+# The light data is derived from company manuals; it is loaded onto the device instead
+data/
