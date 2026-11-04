@@ -345,44 +345,77 @@ function renderDetail() {
 	d.appendChild(q);
 
 	const m = el("div", { class: "sec" }, [el("h3", { text: "MEL" })]);
-	l.mel.forEach(function (e) {
-		m.appendChild(
-			el("div", { class: "entry" }, [
-				el("div", { class: "row" }, [
-					el("span", {
-						class: "pill " + (e.dispatch === "none" ? "nogo" : e.dispatch),
-						text: DISPATCH[e.dispatch],
-					}),
-					el("b", { text: e.exact ? e.item : "Nearest section: " + e.item }),
-				]),
-				e.exact ? el("p", { class: "ttl", text: e.title }) : null,
-				el("p", { class: "gist", text: e.gist }),
-				e.plain ? plainNode(e.plain, false) : null,
-				el("div", { class: "row" }, [
-					refButton(
-						"MEL",
-						e,
-						e.exact ? "Open " + e.item : "Open start of " + e.item,
-						e.title,
-					),
-					el("span", { class: "rev", text: e.rev || "" }),
-				]),
-			]),
-		);
-	});
-	if (!l.mel.length)
-		m.appendChild(
-			el("div", { class: "entry" }, [
-				el("div", { class: "row" }, [
-					el("span", { class: "pill nogo", text: DISPATCH.none }),
-					el("b", { text: "No MEL item found" }),
-				]),
-				el("p", {
-					class: "gist",
-					text: "No MEL item names this light or its function. With no MEL item, the airplane is a no-go.",
+	function melEntry(e) {
+		return el("div", { class: "entry" }, [
+			el("div", { class: "row" }, [
+				el("span", {
+					class: "pill " + (e.dispatch === "none" ? "nogo" : e.dispatch),
+					text: DISPATCH[e.dispatch],
 				}),
+				el("b", { text: e.exact ? e.item : "Nearest section: " + e.item }),
 			]),
-		);
+			e.exact ? el("p", { class: "ttl", text: e.title }) : null,
+			el("p", { class: "gist", text: e.gist }),
+			e.plain ? plainNode(e.plain, false) : null,
+			el("div", { class: "row" }, [
+				refButton(
+					"MEL",
+					e,
+					e.exact ? "Open " + e.item : "Open start of " + e.item,
+					e.title,
+				),
+				el("span", { class: "rev", text: e.rev || "" }),
+			]),
+		]);
+	}
+	function noItem(text) {
+		return el("div", { class: "entry" }, [
+			el("div", { class: "row" }, [
+				el("span", { class: "pill nogo", text: DISPATCH.none }),
+				el("b", { text: "No MEL item found" }),
+			]),
+			el("p", { class: "gist", text: text }),
+		]);
+	}
+	if (l.melScoped) {
+		[
+			[
+				"light",
+				"If this light is inoperative",
+				"No MEL item names this light. With no MEL item, the airplane is a no-go.",
+			],
+			[
+				"system",
+				"If the system behind it is inoperative",
+				"No MEL item names the system behind this light. With no MEL item, the airplane is a no-go.",
+			],
+		].forEach(function (g) {
+			m.appendChild(el("h4", { class: "melgroup", text: g[1] }));
+			const es = l.mel.filter(function (e) {
+				return e.scope === g[0];
+			});
+			const real = es.filter(function (e) {
+				return e.exact || e.dispatch !== "none";
+			});
+			if (!real.length) m.appendChild(noItem(g[2]));
+			es.forEach(function (e) {
+				if (!e.exact) m.appendChild(melEntry(e));
+			});
+			real.forEach(function (e) {
+				if (e.exact) m.appendChild(melEntry(e));
+			});
+		});
+	} else {
+		l.mel.forEach(function (e) {
+			m.appendChild(melEntry(e));
+		});
+		if (!l.mel.length)
+			m.appendChild(
+				noItem(
+					"No MEL item names this light or its function. With no MEL item, the airplane is a no-go.",
+				),
+			);
+	}
 	d.appendChild(m);
 
 	const f = el("div", { class: "sec" }, [el("h3", { text: "FCOM" })]);

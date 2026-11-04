@@ -994,3 +994,13 @@ body:has(#viewer:not([hidden]))::before {
 	font: 400 12px/1.4 var(--f-mono);
 	color: var(--muted);
 }
+.melgroup {
+	margin: 14px 0 6px;
+	font: 600 12px/1.3 var(--f-mono);
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--muted);
+}
+.melgroup:first-of-type {
+	margin-top: 4px;
+}
